@@ -1,26 +1,26 @@
 ---
 title: "Predicting the surfactant class from 450k arrays"
-author: Andreas Mock and Kolja Pocher
+author: Andreas Mock and Kolja Pocher 
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-load("~/Documents/Research/NSCLC-Met-Project/surfactantClass/surfactantClass.RData")
 ```
 
 #### Introduction
 
-The following tutorial describes the prediction of the"surfactant high" and "surfactant low" classes from methylome data (450k arrays). The predictor requires the CellMix R package.
+The following tutorial describes the prediction of the"surfactant high" and "surfactant low" classes from methylome data (450k arrays). The predictor requires the `CellMix` and the `repmis` R package.
 
 ```{r, message=FALSE, warning=FALSE}
 library(CellMix)
+library(repmis)
 ```
 
 The predictor can be loaded by:
 
-```{r, eval=FALSE}
-load("https://github.com/andreasmock/surfactantClass/surfactantClass.RData")
+```{r}
+source_data("https://github.com/andreasmock/surfactantClass/raw/master/surfactantClass.RData")
 ```
 
 

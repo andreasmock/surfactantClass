@@ -4,17 +4,25 @@ Andreas Mock and Kolja Pocher
 
 #### Introduction
 
-The following tutorial describes the prediction of the"surfactant high" and "surfactant low" classes from methylome data (450k arrays). The predictor requires the CellMix R package.
+The following tutorial describes the prediction of the"surfactant high" and "surfactant low" classes from methylome data (450k arrays). The predictor requires the `CellMix` and the `repmis` R package.
 
 ``` r
 library(CellMix)
+library(repmis)
 ```
 
 The predictor can be loaded by:
 
 ``` r
-load("https://github.com/andreasmock/surfactantClass/surfactantClass.RData")
+source_data("https://github.com/andreasmock/surfactantClass/raw/master/surfactantClass.RData")
 ```
+
+    ## Downloading data from: https://github.com/andreasmock/surfactantClass/raw/master/surfactantClass.RData
+
+    ## SHA-1 hash of the downloaded data file is:
+    ## d60f2c1b5f03a2c5a1003b156cc55bdcc9352973
+
+    ## [1] "w"               "cpgs"            "surfactantClass"
 
 #### Download example data
 
@@ -67,7 +75,7 @@ class_prediction <- surfactantClass(all_cpgs = sample$ID_REF, data = sample$VALU
     ##   Estimating cell proportions from cell-specific signatures [lsfit: ls]
     ##  Timing:
     ##    user  system elapsed 
-    ##   1.704   0.011   1.727 
+    ##   1.798   0.012   1.828 
     ##  GED final wrap up ...  OK
 
 ``` r
@@ -101,38 +109,41 @@ sessionInfo()
     ##  [8] datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] CellMix_1.6.2        GSEABase_1.42.0      graph_1.58.2        
-    ##  [4] annotate_1.58.0      XML_3.98-1.16        AnnotationDbi_1.44.0
-    ##  [7] IRanges_2.16.0       S4Vectors_0.20.1     stringr_1.4.0       
-    ## [10] csSAM_1.2.4          NMF_0.22             Biobase_2.42.0      
-    ## [13] BiocGenerics_0.28.0  cluster_2.0.7-1      rngtools_1.3.1      
-    ## [16] pkgmaker_0.27        registry_0.5-1      
+    ##  [1] repmis_0.5           CellMix_1.6.2        GSEABase_1.42.0     
+    ##  [4] graph_1.58.2         annotate_1.58.0      XML_3.98-1.16       
+    ##  [7] AnnotationDbi_1.44.0 IRanges_2.16.0       S4Vectors_0.20.1    
+    ## [10] stringr_1.4.0        csSAM_1.2.4          NMF_0.22            
+    ## [13] Biobase_2.42.0       BiocGenerics_0.28.0  cluster_2.0.7-1     
+    ## [16] rngtools_1.3.1       pkgmaker_0.27        registry_0.5-1      
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] matrixStats_0.54.0    bitops_1.0-6          bit64_0.9-7          
-    ##  [4] doParallel_1.0.14     RColorBrewer_1.1-2    prabclus_2.2-7       
-    ##  [7] tools_3.5.2           R6_2.4.0              DBI_1.0.0            
-    ## [10] lazyeval_0.2.2        colorspace_1.4-1      trimcluster_0.1-2.1  
-    ## [13] nnet_7.3-12           withr_2.1.2           tidyselect_0.2.5     
-    ## [16] gridExtra_2.3         preprocessCore_1.42.0 bit_1.1-14           
-    ## [19] diptest_0.75-7        scales_1.0.0          DEoptimR_1.0-8       
-    ## [22] mvtnorm_1.0-10        robustbase_0.93-4     genefilter_1.62.0    
-    ## [25] quadprog_1.5-5        digest_0.6.18         rmarkdown_1.11       
-    ## [28] pkgconfig_2.0.2       htmltools_0.3.6       bibtex_0.4.2         
-    ## [31] rlang_0.3.1           RSQLite_2.1.1         BiocInstaller_1.30.0 
-    ## [34] mclust_5.4.3          gtools_3.8.1          dendextend_1.10.0    
-    ## [37] dplyr_0.8.0.1         RCurl_1.95-4.11       magrittr_1.5         
-    ## [40] modeltools_0.2-22     Matrix_1.2-15         Rcpp_1.0.1           
-    ## [43] munsell_0.5.0         viridis_0.5.1         stringi_1.4.3        
-    ## [46] whisker_0.3-2         yaml_2.2.0            MASS_7.3-51.1        
-    ## [49] flexmix_2.3-15        plyr_1.8.4            grid_3.5.2           
-    ## [52] blob_1.1.1            crayon_1.3.4          lattice_0.20-38      
-    ## [55] splines_3.5.2         knitr_1.21            pillar_1.3.1         
-    ## [58] fpc_2.1-11.1          corpcor_1.6.9         lpSolve_5.6.13       
-    ## [61] reshape2_1.4.3        codetools_0.2-15      glue_1.3.1           
-    ## [64] evaluate_0.12         foreach_1.4.4         gtable_0.3.0         
-    ## [67] purrr_0.3.2           kernlab_0.9-27        assertthat_0.2.1     
-    ## [70] ggplot2_3.1.0         xfun_0.4              gridBase_0.4-7       
-    ## [73] limSolve_1.5.5.3      xtable_1.8-3          class_7.3-14         
-    ## [76] survival_2.43-3       viridisLite_0.3.0     tibble_2.1.1         
-    ## [79] iterators_1.0.10      beeswarm_0.2.3        memoise_1.1.0
+    ##  [4] httr_1.4.0            doParallel_1.0.14     RColorBrewer_1.1-2   
+    ##  [7] prabclus_2.2-7        R.cache_0.13.0        tools_3.5.2          
+    ## [10] R6_2.4.0              DBI_1.0.0             lazyeval_0.2.2       
+    ## [13] colorspace_1.4-1      trimcluster_0.1-2.1   nnet_7.3-12          
+    ## [16] withr_2.1.2           tidyselect_0.2.5      gridExtra_2.3        
+    ## [19] curl_3.3              preprocessCore_1.42.0 bit_1.1-14           
+    ## [22] diptest_0.75-7        scales_1.0.0          DEoptimR_1.0-8       
+    ## [25] mvtnorm_1.0-10        robustbase_0.93-4     genefilter_1.62.0    
+    ## [28] quadprog_1.5-5        digest_0.6.18         R.utils_2.8.0        
+    ## [31] rmarkdown_1.11        pkgconfig_2.0.2       htmltools_0.3.6      
+    ## [34] bibtex_0.4.2          rlang_0.3.1           RSQLite_2.1.1        
+    ## [37] BiocInstaller_1.30.0  mclust_5.4.3          gtools_3.8.1         
+    ## [40] R.oo_1.22.0           dendextend_1.10.0     dplyr_0.8.0.1        
+    ## [43] RCurl_1.95-4.11       magrittr_1.5          modeltools_0.2-22    
+    ## [46] Matrix_1.2-15         Rcpp_1.0.1            munsell_0.5.0        
+    ## [49] viridis_0.5.1         R.methodsS3_1.7.1     stringi_1.4.3        
+    ## [52] whisker_0.3-2         yaml_2.2.0            MASS_7.3-51.1        
+    ## [55] flexmix_2.3-15        plyr_1.8.4            grid_3.5.2           
+    ## [58] blob_1.1.1            crayon_1.3.4          lattice_0.20-38      
+    ## [61] splines_3.5.2         knitr_1.21            pillar_1.3.1         
+    ## [64] fpc_2.1-11.1          corpcor_1.6.9         lpSolve_5.6.13       
+    ## [67] reshape2_1.4.3        codetools_0.2-15      glue_1.3.1           
+    ## [70] evaluate_0.12         data.table_1.12.0     foreach_1.4.4        
+    ## [73] gtable_0.3.0          purrr_0.3.2           kernlab_0.9-27       
+    ## [76] assertthat_0.2.1      ggplot2_3.1.0         xfun_0.4             
+    ## [79] gridBase_0.4-7        limSolve_1.5.5.3      xtable_1.8-3         
+    ## [82] class_7.3-14          survival_2.43-3       viridisLite_0.3.0    
+    ## [85] tibble_2.1.1          iterators_1.0.10      beeswarm_0.2.3       
+    ## [88] memoise_1.1.0
