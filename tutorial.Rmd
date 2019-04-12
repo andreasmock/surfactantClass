@@ -1,0 +1,64 @@
+---
+title: "Predicting the surfactant class from 450k arrays"
+author: Andreas Mock and Kolja Pocher
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+load("~/Documents/Research/NSCLC-Met-Project/surfactantClass/surfactantClass.RData")
+```
+
+#### Introduction
+
+The following tutorial describes the prediction of the"surfactant high" and "surfactant low" classes from methylome data (450k arrays). The predictor requires the CellMix R package.
+
+```{r, message=FALSE, warning=FALSE}
+library(CellMix)
+```
+
+The predictor can be loaded by:
+
+```{r, eval=FALSE}
+load("https://github.com/andreasmock/surfactantClass/surfactantClass.RData")
+```
+
+
+#### Download example data
+
+To illustrate the functionality of the predictor, we download a examplary lung adenocarcinoma sample analysed with the Illumina 450k array from an independent publish study using the Gene Expression Omnibus (Bjaanæs et al., 2016, [GSE66836](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE66836)). The sample id is GSM1632880.
+
+```{r, eval=TRUE}
+sample <- read.table(file="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?mode=raw&is_datatable=true&acc=GSM1632880&id=21811&db=GeoDb_blob124", sep="\t", header = TRUE)
+```
+
+The object `sample` comprises the beta values of 456946 CpGs.
+
+```{r}
+dim(sample)
+head(sample)
+```
+
+
+#### Predict surfactant class 
+
+The function `surfactantClass` applies a deconvolution algorithm to estimate the fraction of the "surfactant high" and "surfactant low" phenotype. The class label is given according to the phenotype with the highest estimate.
+
+The function requires the vector `all_cpgs` of the CpG labels and a vector or matrix `data` of the corresponding beta values.
+
+```{r}
+class_prediction <- surfactantClass(all_cpgs = sample$ID_REF, data = sample$VALUE)
+```
+
+```{r}
+class_prediction
+```
+
+The examplary LUAD sample can be classified to be "surfactant high".
+
+#### Session info
+
+```{r}
+sessionInfo()
+```
+
