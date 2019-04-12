@@ -67,7 +67,7 @@ class_prediction <- surfactantClass(all_cpgs = sample$ID_REF, data = sample$VALU
     ##   Estimating cell proportions from cell-specific signatures [lsfit: ls]
     ##  Timing:
     ##    user  system elapsed 
-    ##   1.753   0.018   1.799 
+    ##   1.704   0.011   1.727 
     ##  GED final wrap up ...  OK
 
 ``` r
