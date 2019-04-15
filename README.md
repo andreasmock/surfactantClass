@@ -1,6 +1,6 @@
 Predicting the surfactant class from 450k arrays
 ================
-Andreas Mock and Kolja Pocher
+Andreas Mock and Kolja Pocha
 
 #### Introduction
 
@@ -75,7 +75,7 @@ class_prediction <- surfactantClass(all_cpgs = sample$ID_REF, data = sample$VALU
     ##   Estimating cell proportions from cell-specific signatures [lsfit: ls]
     ##  Timing:
     ##    user  system elapsed 
-    ##   1.798   0.012   1.828 
+    ##   1.737   0.009   1.755 
     ##  GED final wrap up ...  OK
 
 ``` r
