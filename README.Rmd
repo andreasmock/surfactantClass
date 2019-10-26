@@ -17,7 +17,7 @@ library(CellMix)
 library(repmis)
 ```
 
-The predictor can be loaded by:
+The predictor can be loaded by
 
 ```{r}
 source_data("https://github.com/andreasmock/surfactantClass/raw/master/surfactantClass.RData")
