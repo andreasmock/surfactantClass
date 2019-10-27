@@ -1,5 +1,5 @@
 ---
-title: "Predicting the surfactant class from 450k arrays"
+title: "Predicting the surfactant class from methylation arrays"
 author: Andreas Mock and Kolja Pocha
 output: github_document
 ---
